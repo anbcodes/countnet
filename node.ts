@@ -119,12 +119,13 @@ const server = new Server((conn) => {
             (index + 1) || "?"
           }\r\n`,
         );
-        scores.map((v, i) => [...v, i]).slice(index - 5, index + 5).forEach(
-          ([scoreIp, count, place]) => {
-            conn.write(scoreIp === ip ? "-> " : "   ");
-            conn.write(`${place as number + 1}. ${scoreIp}: ${count}\r\n`);
-          },
-        );
+        scores.map((v, i) => [...v, i]).slice(Math.max(index - 5, 0), index + 5)
+          .forEach(
+            ([scoreIp, count, place]) => {
+              conn.write(scoreIp === ip ? "-> " : "   ");
+              conn.write(`${place as number + 1}. ${scoreIp}: ${count}\r\n`);
+            },
+          );
       } else if (line[0] === "online") {
         conn.write(`Currently online:\r\n`);
         conn.write(connections.map((v) => v.remoteAddress).join(" ") + "\r\n");
