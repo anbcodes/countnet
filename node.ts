@@ -34,7 +34,7 @@ Type the next number in the sequence to enter it and you can also use the follow
 * top - show the top ten scores
 * online - show who's connected right now
 * who - show who you are
-`.replace("\n", "\r\n");
+`.replaceAll("\n", "\r\n");
 
 let connections: Socket[] = [];
 
@@ -46,7 +46,7 @@ const server = new Server((conn) => {
   try {
     const ip = conn.remoteAddress;
     if (!ip) {
-      conn.write("Error: No remote address found\n");
+      conn.write("Error: No remote address found\r\n");
       conn.end();
       return;
     }
