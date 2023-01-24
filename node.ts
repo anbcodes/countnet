@@ -149,7 +149,7 @@ const server = new Server((conn) => {
     });
   } catch (e) {
     console.error("An error occured", e);
-    conn.write("An error occured, sorry.\n");
+    conn.write("An error occured, sorry.\r\n");
     conn.end();
     connections = connections.filter((v) => v !== conn);
     return;
